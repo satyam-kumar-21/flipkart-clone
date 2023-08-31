@@ -14,7 +14,7 @@ const Text = styled(Typography)`
 margin-left:-81px;
 `
 
-const Profile = ({account}) => {
+const Profile = ({account, setAccount}) => {
     console.log(account);
     const [open, setOpen] = useState(false);
 
@@ -23,6 +23,10 @@ const Profile = ({account}) => {
     }
     const handleClose = () => {
         setOpen(false);
+    }
+
+    const logoutUser = () => {
+        setAccount('');
     }
     return (
         <>
@@ -34,7 +38,7 @@ const Profile = ({account}) => {
                 open={Boolean(open)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => {handleClose(); logoutUser();}}>
                     <PowerSettingsNewIcon color="primary" fontSize="small"/>
                     <LogoutText>Logout</LogoutText>
                 </MenuItem>

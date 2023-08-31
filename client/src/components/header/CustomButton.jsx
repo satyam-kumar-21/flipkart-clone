@@ -31,7 +31,7 @@ height:32px;
 
 const CustomButton = () => {
     
-    const {account} = useContext(DataContext);
+    const {account, setAccount} = useContext(DataContext);
 
     const [open, setOpen] = useState(false);
     const openDialog = () => {
@@ -40,7 +40,7 @@ const CustomButton = () => {
     return(
         <MainBox>
             {
-                account ? <Profile account={account}/> :
+                account ? <Profile account={account} setAccount={setAccount}/> :
                 <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
             }
             

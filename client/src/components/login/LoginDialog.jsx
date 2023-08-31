@@ -1,7 +1,7 @@
 
 import { Dialog, Box, Typography, Button, TextField, styled } from "@mui/material";
 import { useState, useContext } from "react";
-import { authenticatesSignup } from "../../service/api";
+import { authenticatesSignup, authenticatesLogin } from "../../service/api";
 import { DataContext } from "../../context/DataProvider";
 
 const MainComponents = styled(Box)`
@@ -54,6 +54,13 @@ color:#2874f0;
 font-weight:600;
 cursor:pointer;`
 
+const Error = styled(Typography)`
+font-size : 10px;
+color: #ff6161;
+line-height: 0;
+margin-top: 10px;
+font-weight: 600;`
+
 const accountIntitialValues = {
     login:{
         view: 'login',
@@ -76,10 +83,18 @@ const signupIntitialValues = {
     phone: ''
 }
 
+const loginIntitialValue = {
+    username:'',
+    password:''
+}
+
 const LoginDialog = ({ open, setOpen }) => {
 
     const [account, toggleAccount] = useState(accountIntitialValues.login);
     const {setAccount} = useContext(DataContext);
+    const [login , setLogin] = useState(loginIntitialValue);
+    const [signup, setSignup] = useState(signupIntitialValues);
+    const [error, setError] = useState(false);
 
     const toggleSignup = () => {
         toggleAccount(accountIntitialValues.signup)
@@ -87,7 +102,8 @@ const LoginDialog = ({ open, setOpen }) => {
 
     const handleClose = () => {
         setOpen(false);
-        toggleAccount(accountIntitialValues.login)
+        toggleAccount(accountIntitialValues.login);
+        setError(false);
     }
 
     const onInputChange = (e) => {
@@ -95,13 +111,28 @@ const LoginDialog = ({ open, setOpen }) => {
         console.log(signup);
     }
 
-    const [signup, setSignup] = useState(signupIntitialValues);
+ 
 
     const signupUser = async () => {
         const response = await authenticatesSignup(signup);
         if(!response) return;
         handleClose();
         setAccount(signup.firstname);
+    }
+
+    const onValueChange = (e) => {
+        setLogin({...login, [e.target.name] : e.target.value})
+    }
+
+    const loginUser = async () => {
+        const loginRes = await authenticatesLogin(login);
+        console.log(loginRes);
+        if(loginRes.status === 200){
+            handleClose();
+            setAccount(loginRes.data.data.firstname);
+        }else {
+            setError(true);
+        }
     }
 
     return (
@@ -115,10 +146,11 @@ const LoginDialog = ({ open, setOpen }) => {
                     {
                         account.view === 'login' ?
                             <RightPart>
-                                <TextField variant="standard" label="Enter Email/Mobile Number"></TextField>
-                                <TextField variant="standard" label="Enter Password"></TextField>
+                                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="username" label="Enter username"></TextField>
+                                { error && <Error>Please enter valid username and password</Error> }
+                                <TextField variant="standard" onChange={(e) => onValueChange(e)} name="password" label="Enter Password"></TextField>
                                 <Text>By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Text>
-                                <LoginButton>Login</LoginButton>
+                                <LoginButton onClick={() => loginUser()}>Login</LoginButton>
                                 <Typography style={{ textAlign: 'center' }}>OR</Typography>
                                 <RequestOTP>Request OTP</RequestOTP>
                                 <CreateAccount onClick={() => toggleSignup()}>New to flipkart? Create an account</CreateAccount>

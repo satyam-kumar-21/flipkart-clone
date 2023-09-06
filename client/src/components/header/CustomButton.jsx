@@ -5,18 +5,27 @@ import LoginDialog from "../login/LoginDialog";
 import { DataContext } from "../../context/DataProvider";
 import Profile from "./Profile";
 
-const MainBox = styled(Box)`
-display: flex;
-margin: 0 3% 0 7%;
-& > button, & > p ,& > div{
-    margin-right:40px;
-    align-items: center;
-    font-size: 14px;
-}
-`
-const CartButton = styled(Box)`
-display: flex;
-`
+const MainBox = styled(Box)(({theme}) => ({
+    display: 'flex',
+    margin: '0 3% 0 7%',
+    '& > *':{
+        marginRight:40,
+        alignItems: 'center',
+        fontSize: 14
+    },
+    [theme.breakpoints.down('md')]:{
+        display: 'block'
+    }
+}))
+
+const CartButton = styled(Box)(({theme}) => ({
+    display: 'flex',
+    [theme.breakpoints.down('md')]:{
+        display: 'block'
+    }
+}))
+
+
 
 const LoginButton = styled(Button)`
 color: #2874f0;
@@ -27,7 +36,7 @@ border-radius: 2px;
 box-shadow: none;
 font-weight:600;
 height:32px;
-`
+`;
 
 const CustomButton = () => {
     

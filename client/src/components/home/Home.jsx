@@ -34,6 +34,8 @@ const Home = () => {
                 <Slide products={products} title="Deal of the Day3" timer={false}/>
                 <Slide products={products} title="Deal of the Day4" timer={false}/>
                 <Slide products={products} title="Deal of the Day5" timer={false}/>
+                <Slide products={products} title="Deal of the Day5" timer={false}/>
+                <Slide products={products} title="Deal of the Day5" timer={false}/>
             </BoxPadding>
         </>
     )

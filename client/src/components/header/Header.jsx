@@ -1,14 +1,18 @@
 import { AppBar, Toolbar, Typography, Box, styled } from '@mui/material';
 import Search from './Search';
 import CustomButton from './CustomButton';
+import { Link } from 'react-router-dom';
 
 const StyledHeader = styled(AppBar)`
 background : #2874fo;
 height: 55px;
 line-height:0;
 `
-const Logo = styled(Box)`
+const Logo = styled(Link)`
 margin-left : 12%;
+line-height: 0;
+text-decoration : none;
+color: inherit;
 `
 const Explore = styled(Typography)`
 font-size:10px;
@@ -34,7 +38,7 @@ const Header = () => {
         <>
             <StyledHeader >
                 <Toolbar style={{ minHeight: 55 }}>
-                    <Logo>
+                    <Logo to={'/'}>
                         <img src={logoURL} alt="logo" style={{ width: 75 }} />
                         <Box style={{ display: 'flex' }}>
                             <Explore>Explore&nbsp;

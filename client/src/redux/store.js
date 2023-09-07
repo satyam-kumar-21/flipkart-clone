@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { getProductsDetailsReducer, getProductsReducer } from './reducers/productReducer';
+import {cartReducer} from './reducers/cartReducer';
 
 const reducer = combineReducers({
     getProducts : getProductsReducer,
-    getProductDetails : getProductsDetailsReducer
+    getProductDetails : getProductsDetailsReducer,
+    cart: cartReducer
 });
 
 const middleware = [thunk];

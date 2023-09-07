@@ -28,7 +28,7 @@ const ExploreImage = styled('img')({
 })
 
 const CustomButtonWapper = styled(Box)(({theme}) => ({
-    margin: '0 5% 0 auto',
+    margin: '0 10% 0 1%',
     [theme.breakpoints.down('md')]:{
         display: 'none'
     }

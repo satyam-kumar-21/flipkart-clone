@@ -7,6 +7,7 @@ import Profile from "./Profile";
 
 const MainBox = styled(Box)(({theme}) => ({
     display: 'flex',
+    justifyContent:'apace-between',
     margin: '0 3% 0 7%',
     '& > *':{
         marginRight:40,
@@ -53,8 +54,8 @@ const CustomButton = () => {
                 <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
             }
             
-            <Typography style={{marginTop: 3 , width:145}}>Become a Seller</Typography>
-            <Typography style={{marginTop: 3}}>More</Typography>
+            <Typography style={{marginTop: 3 , width:195, marginLeft: 16}}>Become a Seller</Typography>
+            <Typography style={{marginTop: 3, marginRight: 16}}>More</Typography>
             <CartButton>
                 <ShoppingCart />
                 <Typography>Cart</Typography>

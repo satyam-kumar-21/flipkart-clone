@@ -5,6 +5,7 @@ import GroupedButton from './ButtonGroup'
 const Components = styled(Box)`
 border-top: 1px solid #f0f0f0;
 display: flex;
+background: #fff;
 `;
 
 const SmallText = styled(Typography)`
@@ -21,7 +22,9 @@ font-weight: 600;
 `
 
 const LeftComponent = styled(Box)`
-margin: 20px;`
+margin: 20px;
+display: flex;
+flex-direction: column;`
 
 const CartItem = ({item}) => {
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png'

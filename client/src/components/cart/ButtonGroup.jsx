@@ -11,7 +11,7 @@ const GroupedButton = () =>{
         <>
         <Component>
             <StyledButton>-</StyledButton>
-            <Button>1</Button>
+            <Button disabled>1</Button>
             <StyledButton>+</StyledButton>
         </Component>
         </>
